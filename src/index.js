@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import './index.css';
 
 // PROP PASSED IN VIA PROPS IN 'ReactDOM.render' AT BOTTOM OF CODE
@@ -21,10 +22,13 @@ function Tweet( {tweet} ) {
         </div>
     )
 }
+Tweet.propTypes = {
+    tweet: PropTypes.object
+}
 
 // Test Tweet Fake Data
 var testTweet = {
-    message: "Something about dogs.",
+    message: "Savannah Bear is the cutest dog ever!!!",
     gravatar: "123",
     author: {
         handle: "dogperson",
@@ -44,6 +48,9 @@ function Avatar(props) {
             alt="avatar" />
     )
 }
+Avatar.propTypes = {
+    hash: PropTypes.string
+}
 
 function Message(props) {
     return (
@@ -51,6 +58,9 @@ function Message(props) {
             {props.text}
         </div>
     )
+}
+Message.propTypes = {
+    message: PropTypes.string
 }
 
 function NameWithHandle( {author} ) {
@@ -62,6 +72,12 @@ function NameWithHandle( {author} ) {
         </span>
     )
 }
+NameWithHandle.propTypes = {
+    author: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        handle: PropTypes.string.isRequired
+    }).isRequired
+};
 
 // ONE WAY TO GET RETWEET COUNT
 // THE "RetweetButton" FUNCTION BELOW CALLS THIS FUNCTION
@@ -79,7 +95,10 @@ function NameWithHandle( {author} ) {
 
 const Time = (props) => (
     <span className="time">{props.time}</span>
-);
+)
+Time.propTypes = {
+    time: PropTypes.string
+};
 
 const ReplyButton = () => (
     <i className="fa fa-reply reply-button" />
@@ -104,6 +123,9 @@ const RetweetButton = ({retweetCount}) => {
         </span>
     )
 }
+RetweetButton.propTypes = {
+    retweetCount: PropTypes.number
+}
 
 // OLD LIKE BUTTON - USING '&&' OPERATOR THAT I DON'T CARE FOR
 // const LikeButton = ({likeCount}) => (
@@ -127,6 +149,9 @@ const LikeButton = ({likeCount}) => {
             </span>
         </span>
     )
+}
+LikeButton.propTypes = {
+    likeCount: PropTypes.number
 }
 
 const MoreOptionsButton = () => (
