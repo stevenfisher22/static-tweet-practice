@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
+// PROP PASSED IN VIA PROPS IN 'ReactDOM.render' AT BOTTOM OF CODE
+// IT IS PASSED AS THE PROP: "tweet={testTweet}"
 function Tweet( {tweet} ) {
     return (
         <div className="tweet">
@@ -11,8 +13,8 @@ function Tweet( {tweet} ) {
                 <Message text={tweet.message} />
                 <div className="buttons">
                     <ReplyButton />
-                    <RetweetButton count={tweet.retweets}/>
-                    <LikeButton count={tweet.likes} />
+                    <RetweetButton retweetCount={tweet.retweets}/>
+                    <LikeButton likeCount={tweet.likes} />
                     <MoreOptionsButton />
                 </div>
             </div>
@@ -62,12 +64,12 @@ function NameWithHandle( {author} ) {
 }
 
 // ONE WAY TO GET RETWEET COUNT
-// "RetweetButton" FUNCTION BELOW CALLS THIS FUNCTION
-// function getRetweetCount(count) {
-//     if(count > 0) {
+// THE "RetweetButton" FUNCTION BELOW CALLS THIS FUNCTION
+// function getRetweetCount(retweetCount) {
+//     if(retweetCount > 0) {
 //         return (
 //             <span className="retweet-count">
-//                 {count}
+//                 {retweetCount}
 //             </span>
 //         );
 //     } else {
@@ -84,45 +86,44 @@ const ReplyButton = () => (
 );
 
 // OLD RETWEET BUTTON
-// const RetweetButton = ({ count }) => (
+// const RetweetButton = ({retweetCount}) => (
 //     <span className="retweet-button">
 //         <i className="fa fa-retweet" />
-//         {getRetweetCount(count)}
+//         {getRetweetCount(retweetCount)}
 //     </span>
 // );
 
 // NEW RETWEET BUTTON TO INCLUDE COUNT LOGIC
-const RetweetButton = ({count}) => {
+const RetweetButton = ({retweetCount}) => {
     return (
         <span className="retweet-button">
             <i className="fa fa-retweet"/>
             <span className="retweet-count">
-                {count ? count : null}
+                {retweetCount ? retweetCount : null}
             </span>
         </span>
     )
 }
 
 // OLD LIKE BUTTON - USING '&&' OPERATOR THAT I DON'T CARE FOR
-// const LikeButton = ({ count }) => (
+// const LikeButton = ({likeCount}) => (
 //     <span className="like-button">
 //         <i className="fa fa-heart" />
-//         {count > 0 &&
+//         {likeCount > 0 &&
 //             <span className="like-count">
-//                 {count}
+//                 {likeCount}
 //             </span>
 //         }
 //     </span>
 // );
 
-
 // NEW LIKE BUTTON USING TERNARY (?) OPERATOR
-const LikeButton = ({count}) => {
+const LikeButton = ({likeCount}) => {
     return (
         <span className="like-button">
             <i className="fa fa-heart"/>
             <span className="like-count">
-                {count ? count : null}
+                {likeCount ? likeCount : null}
             </span>
         </span>
     )
