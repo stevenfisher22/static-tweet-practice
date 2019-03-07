@@ -61,17 +61,19 @@ function NameWithHandle( {author} ) {
     )
 }
 
-function getRetweetCount(count) {
-    if(count > 0) {
-        return (
-            <span className="retweet-count">
-                {count}
-            </span>
-        );
-    } else {
-        return null;
-    }
-}
+// ONE WAY TO GET RETWEET COUNT
+// "RetweetButton" FUNCTION BELOW CALLS THIS FUNCTION
+// function getRetweetCount(count) {
+//     if(count > 0) {
+//         return (
+//             <span className="retweet-count">
+//                 {count}
+//             </span>
+//         );
+//     } else {
+//         return null;
+//     }
+// }
 
 const Time = (props) => (
     <span className="time">{props.time}</span>
@@ -81,23 +83,50 @@ const ReplyButton = () => (
     <i className="fa fa-reply reply-button" />
 );
 
-const RetweetButton = ({ count }) => (
-    <span>
-        <i className="fa fa-retweet retweet-button" />
-        {getRetweetCount(count)}
-    </span>
-);
+// OLD RETWEET BUTTON
+// const RetweetButton = ({ count }) => (
+//     <span className="retweet-button">
+//         <i className="fa fa-retweet" />
+//         {getRetweetCount(count)}
+//     </span>
+// );
 
-const LikeButton = ({ count }) => (
-    <span>
-        <i className="fa fa-heart like-button" />
-        {count > 0 &&
-            <span className="like-count">
-                {count}
+// NEW RETWEET BUTTON TO INCLUDE COUNT LOGIC
+const RetweetButton = ({count}) => {
+    return (
+        <span className="retweet-button">
+            <i className="fa fa-retweet"/>
+            <span className="retweet-count">
+                {count ? count : null}
             </span>
-        }
-    </span>
-);
+        </span>
+    )
+}
+
+// OLD LIKE BUTTON - USING '&&' OPERATOR THAT I DON'T CARE FOR
+// const LikeButton = ({ count }) => (
+//     <span className="like-button">
+//         <i className="fa fa-heart" />
+//         {count > 0 &&
+//             <span className="like-count">
+//                 {count}
+//             </span>
+//         }
+//     </span>
+// );
+
+
+// NEW LIKE BUTTON USING TERNARY (?) OPERATOR
+const LikeButton = ({count}) => {
+    return (
+        <span className="like-button">
+            <i className="fa fa-heart"/>
+            <span className="like-count">
+                {count ? count : null}
+            </span>
+        </span>
+    )
+}
 
 const MoreOptionsButton = () => (
     <i className="fa fa-ellipsis-h more-options-button" />
