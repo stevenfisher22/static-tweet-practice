@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './index.css';
 
 // PROP PASSED IN VIA PROPS IN 'ReactDOM.render' AT BOTTOM OF CODE
-// IT IS PASSED AS THE PROP: "tweet={testTweet}"
+// IT IS PASSED AS THE PROP: "tweets={testTweet}"
 function Tweet({tweets}) {
     return (
         <>
@@ -57,7 +57,7 @@ const Content = ({tweet}) => (
 //     tweet: PropTypes.object
 // }
 
-// Test Tweet Fake Data
+// TEST TWEET FAKE DATA
 const testTweets = [
     {
         id: 1,
