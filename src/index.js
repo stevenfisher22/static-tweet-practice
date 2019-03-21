@@ -5,29 +5,60 @@ import './index.css';
 
 // PROP PASSED IN VIA PROPS IN 'ReactDOM.render' AT BOTTOM OF CODE
 // IT IS PASSED AS THE PROP: "tweet={testTweet}"
-function Tweet( {tweet} ) {
+function Tweet({tweets}) {
     return (
-        <div className="tweet">
-            <Avatar hash={tweet.gravatar}/>
-            <div className="content">
-                <NameWithHandle author={tweet.author}/> <Time time={tweet.timestamp}/>
-                <Message text={tweet.message} />
-                <div className="buttons">
-                    <ReplyButton />
-                    <RetweetButton retweetCount={tweet.retweets}/>
-                    <LikeButton likeCount={tweet.likes} />
-                    <MoreOptionsButton />
-                </div>
-            </div>
-        </div>
+        <>
+            {tweets.map(tweet => (
+                <Content key={tweet.id} tweet={tweet}/>
+            ))}
+        </>
     )
 }
 Tweet.propTypes = {
     tweet: PropTypes.object
-}
+};
+
+const Content = ({tweet}) => (
+    <div className="tweet">
+        <Avatar hash={tweet.gravatar}/>
+        <div className="content">
+            <NameWithHandle author={tweet.author}/> 
+            <Time time={tweet.timestamp}/>
+            <Message text={tweet.message} />
+            <div className="buttons">
+                <ReplyButton />
+                <RetweetButton retweetCount={tweet.retweets}/>
+                <LikeButton likeCount={tweet.likes} />
+                <MoreOptionsButton />
+            </div>
+        </div>
+    </div>
+)
+
+// OLD WORKING VERSION:
+// function Tweet( {tweet} ) {
+//     return (
+//         <div className="tweet">
+//             <Avatar hash={tweet.gravatar}/>
+//             <div className="content">
+//                 <NameWithHandle author={tweet.author}/> <Time time={tweet.timestamp}/>
+//                 <Message text={tweet.message} />
+//                 <div className="buttons">
+//                     <ReplyButton />
+//                     <RetweetButton retweetCount={tweet.retweets}/>
+//                     <LikeButton likeCount={tweet.likes} />
+//                     <MoreOptionsButton />
+//                 </div>
+//             </div>
+//         </div>
+//     )
+// }
+// Tweet.propTypes = {
+//     tweet: PropTypes.object
+// }
 
 // Test Tweet Fake Data
-var testTweet = [
+const testTweets = [
     {
         id: 1,
         message: "Savannah Bear is the cutest dog ever!!!",
@@ -46,10 +77,22 @@ var testTweet = [
         gravatar: "123",
         author: {
             handle: "amandog",
-            name: "Am a Dog Person"
+            name: "AmanDog Person"
         },
         likes: 4,
         retweets: 6,
+        timestamp: "1 day ago"
+    },
+    {
+        id: 3,
+        message: "I love my parents!!!",
+        gravatar: "123",
+        author: {
+            handle: "savannah_dog",
+            name: "I Am Actually a Dog"
+        },
+        likes: 6,
+        retweets: 1,
         timestamp: "1 day ago"
     },
 ];
@@ -186,4 +229,4 @@ const MoreOptionsButton = () => (
     <i className="fa fa-ellipsis-h more-options-button" />
 );
 
-ReactDOM.render(<Tweet tweet={testTweet} />, document.querySelector('#root'));
+ReactDOM.render(<Tweet tweets={testTweets} />, document.querySelector('#root'));
