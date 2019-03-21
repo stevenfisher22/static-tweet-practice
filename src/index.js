@@ -27,17 +27,45 @@ Tweet.propTypes = {
 }
 
 // Test Tweet Fake Data
-var testTweet = {
-    message: "Savannah Bear is the cutest dog ever!!!",
-    gravatar: "123",
-    author: {
-        handle: "dogperson",
-        name: "IAMA Dog Person"
+var testTweet = [
+    {
+        id: 1,
+        message: "Savannah Bear is the cutest dog ever!!!",
+        gravatar: "123",
+        author: {
+            handle: "dogperson",
+            name: "IAMA Dog Person"
+        },
+        likes: 5,
+        retweets: 2,
+        timestamp: "3 days ago"
     },
-    likes: 5,
-    retweets: 2,
-    timestamp: "3 days ago"
-};
+    {
+        id: 2,
+        message: "Savannah Bear is my favorite!!!",
+        gravatar: "123",
+        author: {
+            handle: "amandog",
+            name: "Am a Dog Person"
+        },
+        likes: 4,
+        retweets: 6,
+        timestamp: "1 day ago"
+    },
+];
+
+// OLD WORKING TEST TWEET FAKE DATA
+// var testTweet = {
+//     message: "Savannah Bear is the cutest dog ever!!!",
+//     gravatar: "123",
+//     author: {
+//         handle: "dogperson",
+//         name: "IAMA Dog Person"
+//     },
+//     likes: 5,
+//     retweets: 2,
+//     timestamp: "3 days ago"
+// };
 
 function Avatar(props) {
     var url = `https://www.gravatar.com/avatar/${props.hash}`;
